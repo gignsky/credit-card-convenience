@@ -1,5 +1,3 @@
-#![windows_subsystem = "windows"]
-
 use std::io;
 
 const FIXED_PRICE: f64 = 0.30;
