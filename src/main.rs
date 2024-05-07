@@ -1,10 +1,15 @@
 use std::io;
 
-const FIXED_THIRTY_CENT_FEE: f64 = 0.30; //This is the fixed 30 cent fee that Stripe charges on top of the below 2.9% fee for every transaction
-const CREDIT_CARD_FEE_PERCENTAGE: f64 = 0.029; //This is the 2.9% fee that Stripe charges for every transaction
-const MISC_STRIPE_INVOICE_FEE: f64 = 0.004; //This is the 0.4% fee that Stripe charges for every invoice creation
-const FEE_PERCENTAGE_OF_TOTAL: f64 = MISC_STRIPE_INVOICE_FEE + CREDIT_CARD_FEE_PERCENTAGE; //This is the total percentage of the the total cost that stripe will charge before the 30 cent additional fee
-const INVERTED_RATE: f64 = 1.0 - FEE_PERCENTAGE_OF_TOTAL; //This is the inverted rate of the total percentage of the total cost that stripe will charge before the 30 cent additional fee
+//This is the fixed 30 cent fee that Stripe charges on top of the below 2.9% fee for every transaction
+const FIXED_THIRTY_CENT_FEE: f64 = 0.30;
+//This is the 2.9% fee that Stripe charges for every transaction
+const CREDIT_CARD_FEE_PERCENTAGE: f64 = 0.029;
+//This is the 0.4% fee that Stripe charges for every invoice creation
+const MISC_STRIPE_INVOICE_FEE: f64 = 0.004;
+//This is the total percentage of the the total cost that stripe will charge before the 30 cent additional fee
+const FEE_PERCENTAGE_OF_TOTAL: f64 = MISC_STRIPE_INVOICE_FEE + CREDIT_CARD_FEE_PERCENTAGE;
+//This is the inverted rate of the total percentage of the total cost that stripe will charge before the 30 cent additional fee
+const INVERTED_RATE: f64 = 1.0 - FEE_PERCENTAGE_OF_TOTAL;
 
 /// Main function that runs the program.
 fn main() {
