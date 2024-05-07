@@ -47,8 +47,7 @@ fn main() {
 /// Returns the calculated charge price.
 fn calculate(og_price: f64) -> f64 {
     let fixed_price = og_price + FIXED_THIRTY_CENT_FEE;
-    let return_price = fixed_price / INVERTED_RATE;
-    return_price
+    fixed_price / INVERTED_RATE
 }
 
 /// Verifies the original price and the charge price.
