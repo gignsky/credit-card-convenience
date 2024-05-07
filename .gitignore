@@ -1,1 +1,6 @@
-/target
+/target/release
+/target/debug
+/target/x86_64-pc-windows-gnu
+/target/.rustc_info.json
+/target/.rustdoc_fingerprint.json
+/target/CACHEDIR.TAG
