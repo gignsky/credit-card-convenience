@@ -1,10 +1,10 @@
 use std::io;
 
-const FIXED_PRICE: f64 = 0.30;
-const INVOICE_FEES: f64 = 0.004;
-const PAYMENT_FEES: f64 = 0.029;
-const RATES: f64 = INVOICE_FEES + PAYMENT_FEES;
-const INVERTED_RATE: f64 = 1.0 - RATES;
+const FIXED_THIRTY_CENT_FEE: f64 = 0.30;
+const MISC_STRIPE_INVOICE_FEE: f64 = 0.004;
+const CREDIT_CARD_FEE_PERCENTAGE: f64 = 0.029;
+const FEE_PERCENTAGE_OF_TOTAL: f64 = MISC_STRIPE_INVOICE_FEE + CREDIT_CARD_FEE_PERCENTAGE;
+const INVERTED_RATE: f64 = 1.0 - FEE_PERCENTAGE_OF_TOTAL;
 
 fn main() {
     loop {
@@ -35,7 +35,7 @@ fn main() {
 }
 
 fn calculate(og_price: f64) -> f64 {
-    let fixed_price = og_price + FIXED_PRICE;
+    let fixed_price = og_price + FIXED_THIRTY_CENT_FEE;
     let return_price = fixed_price / INVERTED_RATE;
     return_price
 }
@@ -49,9 +49,9 @@ fn verify(og_price: f64, charge_price: f64) {
         "The charge price of the product is: {}",
         format_price(charge_price)
     );
-    let invoice_fee = charge_price * INVOICE_FEES;
+    let invoice_fee = charge_price * MISC_STRIPE_INVOICE_FEE;
     println!("The invoice fee is: {}", format_price(invoice_fee));
-    let cc_fee = charge_price * PAYMENT_FEES + FIXED_PRICE;
+    let cc_fee = charge_price * CREDIT_CARD_FEE_PERCENTAGE + FIXED_THIRTY_CENT_FEE;
     println!("The fee is: {}", format_price(cc_fee));
     let total_fee = invoice_fee + cc_fee;
     println!("The total fee is: {}", format_price(total_fee));
@@ -81,8 +81,8 @@ mod tests {
     #[test]
     fn test_calculate() {
         assert_eq!(format!("{:.2}", calculate(10.0)), "10.65");
-        assert_eq!(format!("{:.2}", calculate(125.0)), "129.58");
-        assert_eq!(format!("{:.2}", calculate(625.0)), "646.64");
+        assert_eq!(format!("{:.2}",calculate(125.0)), "129.58");
+        assert_eq!(format!("{:.2}",calculate(625.0)), "646.64");
     }
 
     #[test]
