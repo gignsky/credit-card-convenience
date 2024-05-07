@@ -9,9 +9,11 @@ const INVERTED_RATE: f64 = 1.0 - FEE_PERCENTAGE_OF_TOTAL; //This is the inverted
 /// Main function that runs the program.
 fn main() {
     loop {
+        println!("-----------------------------------");
         println!(
-            "Welcome! Please enter the price of the product in dollars and cents (e.g. 10.99):"
+            "Welcome! Please enter the price of the product in dollars and cents (e.g. 10.99) | Enter Zero (0) to QUIT:"
         );
+        println!("-----------------------------------");
 
         let mut input = String::new();
         io::stdin()
@@ -30,8 +32,10 @@ fn main() {
             break;
         }
 
+        println!("-----------------------------------");
         let charge_price = calculate(price);
         verify(price, charge_price);
+        println!("-----------------------------------");
     }
 }
 
