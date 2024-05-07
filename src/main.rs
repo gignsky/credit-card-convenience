@@ -73,3 +73,22 @@ fn format_price(price: f64) -> String {
     //price.to_string()
     format!("${:.2}", price)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_calculate() {
+        assert_eq!(format!("{:.2}", calculate(10.0)), "10.65");
+        assert_eq!(format!("{:.2}", calculate(125.0)), "129.58");
+        assert_eq!(format!("{:.2}", calculate(625.0)), "646.64");
+    }
+
+    #[test]
+    fn test_format_price() {
+        assert_eq!(format_price(10.0), "$10.00");
+        assert_eq!(format_price(20.123), "$20.12");
+        assert_eq!(format_price(30.999), "$31.00");
+    }
+}
