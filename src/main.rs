@@ -40,7 +40,6 @@ fn main() {
         println!("-----------------------------------");
         let charge_price = calculate(price);
         verify(price, charge_price);
-        println!("-----------------------------------");
     }
 }
 
@@ -96,7 +95,6 @@ fn verify(og_price: f64, charge_price: f64) {
         "The Additional amount to charge is {}",
         format_price(charge_price - og_price)
     );
-    println!("-----------------------------------");
 }
 
 /// Formats the price as a string with a dollar sign and two decimal places.
