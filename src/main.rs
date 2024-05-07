@@ -59,24 +59,37 @@ fn verify(og_price: f64, charge_price: f64) {
         "The original price of the product is {}",
         format_price(og_price)
     );
+
     println!("-----------------------------------");
+
     println!(
         "The amount to charge in TOTAL product is: {}",
         format_price(charge_price)
     );
-    println!("-----------------------------------");
 
+    println!("-----------------------------------");
     let invoice_fee = charge_price * MISC_STRIPE_INVOICE_FEE;
-    println!("The invoice fee is: {}", format_price(invoice_fee));
-    let cc_fee = charge_price * CREDIT_CARD_FEE_PERCENTAGE + FIXED_THIRTY_CENT_FEE;
-    println!("The fee is: {}", format_price(cc_fee));
-    let total_fee = invoice_fee + cc_fee;
-    println!("The total fee is: {}", format_price(total_fee));
-    let price_after_fees = charge_price - total_fee;
     println!(
-        "The price after fees is: {}",
-        format_price(price_after_fees)
+        "The MISC Stripe (invoice) Fee is: {}",
+        format_price(invoice_fee)
     );
+    let cc_fee = charge_price * CREDIT_CARD_FEE_PERCENTAGE + FIXED_THIRTY_CENT_FEE;
+    println!("The Credit Card Fee is: {}", format_price(cc_fee));
+    let total_fee = invoice_fee + cc_fee;
+    println!("The combined Fees are: {}", format_price(total_fee));
+    // println!("-----------------------------------");
+    // let price_after_fees = charge_price - total_fee;
+    // match price_after_fees {
+    //     og_price => {
+    //         println!("The price after fees are subtracted is equal to the original price");
+    //         println!("The difference between the original price and the price after fees are subtracted is: {}", format_price(og_price - price_after_fees));
+    //     }
+    //     _ => println!("The price after fees are subtracted is not equal to the original price"),
+    // }
+    // println!(
+    //     "The price after fees are subtracted is: {}",
+    //     format_price(price_after_fees)
+    // );
 
     println!("-----------------------------------");
     println!(
