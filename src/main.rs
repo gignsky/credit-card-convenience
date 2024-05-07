@@ -6,6 +6,7 @@ const CREDIT_CARD_FEE_PERCENTAGE: f64 = 0.029;
 const FEE_PERCENTAGE_OF_TOTAL: f64 = MISC_STRIPE_INVOICE_FEE + CREDIT_CARD_FEE_PERCENTAGE;
 const INVERTED_RATE: f64 = 1.0 - FEE_PERCENTAGE_OF_TOTAL;
 
+/// Main function that runs the program.
 fn main() {
     loop {
         println!(
@@ -34,12 +35,16 @@ fn main() {
     }
 }
 
+/// Calculates the charge price based on the original price.
+/// Returns the calculated charge price.
 fn calculate(og_price: f64) -> f64 {
     let fixed_price = og_price + FIXED_THIRTY_CENT_FEE;
     let return_price = fixed_price / INVERTED_RATE;
     return_price
 }
 
+/// Verifies the original price and the charge price.
+/// Prints the original price, charge price, invoice fee, fee, total fee, and price after fees.
 fn verify(og_price: f64, charge_price: f64) {
     println!(
         "The original price of the product is {}",
@@ -69,8 +74,8 @@ fn verify(og_price: f64, charge_price: f64) {
     println!("-----------------------------------");
 }
 
+/// Formats the price as a string with a dollar sign and two decimal places.
 fn format_price(price: f64) -> String {
-    //price.to_string()
     format!("${:.2}", price)
 }
 
@@ -81,8 +86,8 @@ mod tests {
     #[test]
     fn test_calculate() {
         assert_eq!(format!("{:.2}", calculate(10.0)), "10.65");
-        assert_eq!(format!("{:.2}",calculate(125.0)), "129.58");
-        assert_eq!(format!("{:.2}",calculate(625.0)), "646.64");
+        assert_eq!(format!("{:.2}", calculate(125.0)), "129.58");
+        assert_eq!(format!("{:.2}", calculate(625.0)), "646.64");
     }
 
     #[test]
