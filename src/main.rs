@@ -1,3 +1,4 @@
+use rust_decimal::Decimal;
 use std::io;
 
 ///This is the fixed 30 cent fee that Stripe charges on top of the below 2.9% fee for every transaction
@@ -13,6 +14,8 @@ const INVERTED_RATE: f64 = 1.0 - FEE_PERCENTAGE_OF_TOTAL;
 
 /// Main function that runs the program.
 fn main() {
+    let x = Decimal::new(10, 2);
+    println!("x is {}", x);
     loop {
         println!("-----------------------------------");
         println!(
