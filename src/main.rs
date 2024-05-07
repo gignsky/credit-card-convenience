@@ -59,10 +59,13 @@ fn verify(og_price: f64, charge_price: f64) {
         "The original price of the product is {}",
         format_price(og_price)
     );
+    println!("-----------------------------------");
     println!(
-        "The charge price of the product is: {}",
+        "The amount to charge in TOTAL product is: {}",
         format_price(charge_price)
     );
+    println!("-----------------------------------");
+
     let invoice_fee = charge_price * MISC_STRIPE_INVOICE_FEE;
     println!("The invoice fee is: {}", format_price(invoice_fee));
     let cc_fee = charge_price * CREDIT_CARD_FEE_PERCENTAGE + FIXED_THIRTY_CENT_FEE;
