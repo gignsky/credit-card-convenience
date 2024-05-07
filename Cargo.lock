@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "credit-card-convience"
+name = "credit-card-convenience"
 version = "0.1.0"
